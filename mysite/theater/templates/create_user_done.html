@@ -1,0 +1,31 @@
+<html>
+<title>{% block title %}INDIMOVIE{% endblock %}</title>
+
+<body style="background-image:url('/static/img/bg.jpg'); background-repeat:no-repeat; background-size:cover;">
+{% block content %}
+ <div class="complete" style="background-color:#ffffff; vertical-align:middle; width:400px;height:400px; text-align:center; margin-left:auto; margin-right:auto; margin-top:100px;" >
+    <p style = "text-align:center;">
+    <br><br><br><br><br>
+    
+    영화관 제휴 문의 신청이<br>
+    완료되었습니다.
+    
+    <br><br>
+
+    INDIMOVIE에서 입력해주신 정보들을 검토해보고 <br>
+    결과를 알려드리겠습니다.
+
+    <br><br>
+    <b>제휴 문의 결과 확인은? <br>
+     이메일을 통해 확인해주세요.</b>
+
+     <!-- 홈 리다이렉트를 위한 부분 -->
+    <br><br>
+        <a href="{% url 'home' %}">
+            <input type="button" value="홈으로 가기" style=" border: 1px solid black; border-radius : 3px; background-color: black; padding: 5px; color : white; font-size:15px;">
+        </a>
+    </p>
+    </div>
+{% endblock %}
+</body>
+</html>

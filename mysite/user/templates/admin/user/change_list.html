@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>INDIMOVIE통계</title>
+</head>
+<body style="background-color: #354052; color:#EAEAEA; font-family: Comic Sans MS, Jeju Gothic;">
+<br><br>
+    <div class="higher" style="margin-left: auto; margin-right: auto; text-align:center;">
+        <table style="margin-left: auto; margin-right: auto; font-size:30px;">
+        <tr>
+            <td><img src="{% static 'img/diagram.png' %}" style="height:40px; width:40px;"/></td>
+            <td>INDIMOVIE<strong>의 성장</strong></td>
+        </tr>
+        </table>
+        <table style="margin-left: auto; margin-right: auto; border-spacing: 20px; vertical-align:center; margin-top:20px;">
+            <tr>
+                <td><canvas id="myChart2" style="width: 400px; height: 400px;"></canvas></td>
+                <td><canvas id="myChart3" style="width: 400px; height: 400px;"></canvas></td>
+            </tr>
+        </table>
+   </div>
+</body>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+<script>
+var ctx2 = document.getElementById('myChart2').getContext('2d');
+var myChart2 = new Chart(ctx2, {
+    // type: 차트종류
+    type: 'bar',
+    data: {
+        labels:
+        [
+        {% for k in monthly_user_key %}
+        '{{ k }}',
+        {% endfor %}
+        ],
+        datasets: [
+        {% for t in monthly_user_tmp %}
+        {
+            label: '{{ t.0 }}',
+            // data만 잘 넣어주시면 됩니다.
+            data: {{ t.1 }},//[12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        },
+        {% endfor %}
+        ]
+    },
+    options: {
+        defaultFontColor:'#EAEAEA',
+        legend: {
+				labels: {
+					fontColor: "rgba(234, 234, 234, 1)"
+				}
+			},
+        title: {
+                display: true,
+                text: 'INDIMOVIE 월별 회원 수',
+                fontColor : "rgba(234, 234, 234, 1)"
+            },
+        responsive : false,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                    fontColor : "rgba(234, 234, 234, 1)",
+                }
+            }]
+        }
+    }
+});
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+<script>
+var ctx3 = document.getElementById('myChart3').getContext('2d');
+var myChart3 = new Chart(ctx3, {
+    // type: 차트종류
+    type: 'line',
+    data: {
+        labels:
+        [
+        {% for k in monthly_user_key %}
+        '{{ k }}',
+        {% endfor %}
+        ],
+        datasets: [
+        {% for t in monthly_user_tmp %}
+        {
+            label: '{{ t.0 }}',
+            // data만 잘 넣어주시면 됩니다.
+            data: [2, 3, 5, 12, 19, 30],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        },
+        {% endfor %}
+        ]
+    },
+    options: {
+        defaultFontColor:'#EAEAEA',
+        legend: {
+				labels: {
+					fontColor: "rgba(234, 234, 234, 1)"
+				}
+			},
+        title: {
+                display: true,
+                text: 'INDIMOVIE 월별 예매 건수',
+                fontColor : "rgba(234, 234, 234, 1)"
+            },
+        responsive : false,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                    fontColor : "rgba(234, 234, 234, 1)",
+                }
+            }]
+        }
+    }
+});
+</script>
+</html>

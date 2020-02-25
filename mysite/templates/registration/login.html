@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>INDIMOVIE</title>
+    <style type="text/css">
+      body {
+          background-color: #354052;
+      }
+      div.title{
+          font-color: #47bac1;
+          margin-left: auto;
+          margin-right: auto;
+          font-family: Comic Sans MS;
+          text-align : center;
+          vertical-align: middle;
+      }
+      form{
+          margin-left: auto;
+          margin-right: auto;
+          background-color: #ffffff;
+          width:400px;
+          height:280px;
+          border: 1px solid #47bac1;
+          border-radius: 3px;
+          text-align : center;
+          vertical-align: middle;
+      }
+      input{
+          width:100%;
+          height: 30px;
+          color:#000;
+          background : none;
+          border: 1px solid #47bac1;
+          border-radius : 2px;
+          text-align : center;
+      }
+      h2{
+          margin-left: auto;
+          margin-right: auto;
+          text-align : center;
+          color : #47bac1;
+          vertical-align: middle;
+      }
+      button{
+           margin-left: auto;
+           margin-right: auto;
+           height: 35px;
+           width : 60%;
+           background-color:#47bac1;
+           color:#ffffff;
+           border : none;
+      }
+     </style>
+</head>
+<body>
+<div class="title">
+    <h2>INDIMOVIE</h2>
+</div>
+
+<form method="post">
+  {% csrf_token %}
+    <br><br><br>
+    <table style="margin-left: auto; margin-right: auto;">
+        <tr>
+            <td><label for="id_username">ID</label></td>
+            <td><input type="text" name="username" autofocus required id="id_username"></td>
+        </tr>
+        <tr>
+            <td><label for="id_password">Password</label></td>
+            <td><input type="password" name="password" required id="id_password"></td>
+        </tr>
+    </table>
+    <br>
+  <button type="submit">로그인</button>
+</form>
+</body>
+</html>
